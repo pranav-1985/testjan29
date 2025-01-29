@@ -9,25 +9,19 @@ class NewsRepository {
 
         // Retrofit instance setup
         val api = Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(Constants.BASE_URL)  // Use the base URL constant
+              // Use the base URL constant
             .build()
             .create(NewsApi::class.java)  // Create the API service interface
 
         // Making the network call and converting the response to a list
-        try{
-            val response = api.getNewsInfo(
-                accessKey = Constants.API_KEY,
-                source,
-                country
-            )
-          return  response.toNewsModel()
-        } catch ( e : Exception){
-            e.printStackTrace()
-
-        }
-
-        return emptyList()
+        val response = api.getNewsInfo(
+            accessKey = Constants.API_KEY,
+            source,
+            country
+        )
+        return response.toNewsModel()
     }
 }
 

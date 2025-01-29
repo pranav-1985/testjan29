@@ -7,7 +7,7 @@ interface NewsApi {
     @GET("news")  // The endpoint path (after the base URL)
     suspend fun getNewsInfo(
         @Query("access_key") accessKey: String,
-        @Query("source") source: String,
-        @Query("country") country: String
+        @Query("sources") source: String,
+        @Query("countries") country: String
     ): NewsEntity
 }
