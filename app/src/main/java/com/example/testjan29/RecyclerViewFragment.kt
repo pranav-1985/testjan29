@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testjan29.recyclerView.RecyclerViewAdapter
@@ -43,6 +44,12 @@ class RecyclerViewFragment : Fragment(), RecyclerViewAdapter.ItemClickListener {
 
         mRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            addItemDecoration(
+                DividerItemDecoration(
+                    mRecyclerView.context,
+                    DividerItemDecoration.VERTICAL
+                )
+            )
             adapter = mAdapter
         }
 
