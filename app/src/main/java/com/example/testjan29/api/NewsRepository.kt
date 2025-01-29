@@ -18,8 +18,8 @@ class NewsRepository {
         // Making the network call and converting the response to a list
         val response = api.getNewsInfo(
             accessKey = Constants.API_KEY,
-            source,
-            country
+            Constants.SOURCES,
+            Constants.COUNTRIES
         )
         return response.toNewsModel()
     }
