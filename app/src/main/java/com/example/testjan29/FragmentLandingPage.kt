@@ -31,8 +31,8 @@ class FragmentLandingPage : Fragment() {
         val spinner1: Spinner = view.findViewById(R.id.spinner_country)
         val spinner2: Spinner = view.findViewById(R.id.spinner_source)
 
-        val items1 = arrayOf("US", "AU")
-        val items2 = arrayOf("BBC", "CNN")
+        val items1 = arrayOf("us", "au")
+        val items2 = arrayOf("bbc", "cnn")
 
         val adapter1 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, items1)
         val adapter2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, items2)

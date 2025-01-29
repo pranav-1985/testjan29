@@ -15,13 +15,19 @@ class NewsRepository {
             .create(NewsApi::class.java)  // Create the API service interface
 
         // Making the network call and converting the response to a list
-        val response = api.getNewsInfo(
-            accessKey = Constants.API_KEY,
-            sources = Constants.SOURCES,
-            countries = Constants.COUNTRIES
-        )
+        try{
+            val response = api.getNewsInfo(
+                accessKey = Constants.API_KEY,
+                source,
+                country
+            )
+          return  response.toNewsModel()
+        } catch ( e : Exception){
+            e.printStackTrace()
 
-        return response.filterOnSourceAndCountry(country, source)// Use the API key constant
+        }
+
+        return emptyList()
     }
 }
 
@@ -35,15 +41,15 @@ fun NewsEntity.toNewsModel(): List<NewsModel> {
         )
     }
 }
-
-fun NewsEntity.filterOnSourceAndCountry(country: String, source: String): List<NewsModel> {
-
-    val newsModels = this.toNewsModel()
-
-    return newsModels.filter { newsModel ->
-        newsModel.newsSource == source && newsModel.newsDescription.contains(
-            country,
-            ignoreCase = true
-        )
-    }
-}
+//
+//fun NewsEntity.filterOnSourceAndCountry(country: String, source: String): List<NewsModel> {
+//
+//    val newsModels = this.toNewsModel()
+//
+//    return newsModels.filter { newsModel ->
+//        newsModel.newsSource == source && newsModel.newsDescription.contains(
+//            country,
+//            ignoreCase = true
+//        )
+//    }
+//}
