@@ -5,8 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class NewsEntity(
     @SerializedName("pagination") val pagination: Pagination,
     @SerializedName("data") val data: List<Article>
-)
-{
+) {
     data class Pagination(
         @SerializedName("limit") val limit: Int,
         @SerializedName("offset") val offset: Int,

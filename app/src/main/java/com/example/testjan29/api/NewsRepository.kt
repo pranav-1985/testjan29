@@ -5,21 +5,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class NewsRepository {
 
-    suspend fun getCurrencyInfo(country: String, source: String): List<NewsModel> {
+    suspend fun getNewsInfo(country: String, source: String): List<NewsModel> {
 
-        // Retrofit instance setup
         val api = Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-              // Use the base URL constant
+            .baseUrl(Constants.BASE_URL)
             .build()
-            .create(NewsApi::class.java)  // Create the API service interface
+            .create(NewsApi::class.java)
 
-        // Making the network call and converting the response to a list
         val response = api.getNewsInfo(
-            accessKey = Constants.API_KEY,
-            Constants.SOURCES,
-            Constants.COUNTRIES
+            sources = source,
+            countries = country
         )
         return response.toNewsModel()
     }

@@ -25,7 +25,7 @@ class ViewModel : ViewModel() {
         job = viewModelScope.launch(Dispatchers.IO) {
 
             val repository = NewsRepository()
-            val response = repository.getCurrencyInfo(country, source)
+            val response = repository.getNewsInfo(country, source)
             withContext(Main) {
                 _newsDetails.value = response
             }
